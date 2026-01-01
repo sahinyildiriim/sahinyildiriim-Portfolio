@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react';
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import Typed from 'typed.js';
-import { FaArrowRight, FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
+import React, { useEffect, useRef } from "react";
+import styled from "styled-components";
+import { motion } from "framer-motion";
+import Typed from "typed.js";
+import { FaArrowRight, FaLinkedin, FaGithub, FaTwitter } from "react-icons/fa";
 
 const HomeSection = styled.section`
   min-height: 100vh;
@@ -30,8 +30,12 @@ const BgGradient = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 20% 30%, rgba(126, 87, 194, 0.2), transparent 40%),
-              radial-gradient(circle at 80% 70%, rgba(0, 168, 255, 0.2), transparent 40%);
+  background: radial-gradient(
+      circle at 20% 30%,
+      rgba(126, 87, 194, 0.2),
+      transparent 40%
+    ),
+    radial-gradient(circle at 80% 70%, rgba(0, 168, 255, 0.2), transparent 40%);
   z-index: 0;
 `;
 
@@ -48,7 +52,7 @@ const HeroContent = styled.div`
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 50px;
-  
+
   @media (max-width: 992px) {
     grid-template-columns: 1fr;
     text-align: center;
@@ -67,7 +71,11 @@ const SubHeading = styled(motion.p)`
   text-transform: uppercase;
   letter-spacing: 3px;
   font-weight: 500;
-  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 20px;
@@ -79,11 +87,11 @@ const Heading = styled(motion.h1)`
   line-height: 1.2;
   margin-bottom: 20px;
   color: var(--text-primary);
-  
+
   @media (max-width: 768px) {
     font-size: 3rem;
   }
-  
+
   @media (max-width: 576px) {
     font-size: 2.5rem;
   }
@@ -99,7 +107,7 @@ const Description = styled(motion.p)`
   max-width: 600px;
   margin-bottom: 40px;
   line-height: 1.8;
-  
+
   @media (max-width: 992px) {
     margin-left: auto;
     margin-right: auto;
@@ -109,11 +117,11 @@ const Description = styled(motion.p)`
 const ButtonContainer = styled(motion.div)`
   display: flex;
   gap: 20px;
-  
+
   @media (max-width: 992px) {
     justify-content: center;
   }
-  
+
   @media (max-width: 576px) {
     flex-direction: column;
     width: 100%;
@@ -134,21 +142,21 @@ const PrimaryButton = styled(motion.a)`
   text-decoration: none;
   box-shadow: 0 10px 25px rgba(0, 168, 255, 0.4);
   transition: all 0.3s ease;
-  
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(0, 168, 255, 0.5);
     color: white;
   }
-  
+
   svg {
     transition: transform 0.3s ease;
   }
-  
+
   &:hover svg {
     transform: translateX(5px);
   }
-  
+
   @media (max-width: 576px) {
     width: 100%;
     justify-content: center;
@@ -167,21 +175,21 @@ const SecondaryButton = styled(motion.a)`
   text-decoration: none;
   box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
-  
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: inset 0 0 0 2px var(--primary-color);
     color: var(--primary-color);
   }
-  
+
   svg {
     transition: transform 0.3s ease;
   }
-  
+
   &:hover svg {
     transform: translateX(5px);
   }
-  
+
   @media (max-width: 576px) {
     width: 100%;
     justify-content: center;
@@ -192,7 +200,7 @@ const SocialContainer = styled(motion.div)`
   display: flex;
   gap: 15px;
   margin-top: 40px;
-  
+
   @media (max-width: 992px) {
     justify-content: center;
   }
@@ -209,7 +217,7 @@ const SocialLink = styled(motion.a)`
   color: var(--text-primary);
   font-size: 1.2rem;
   transition: var(--transition);
-  
+
   &:hover {
     background: var(--primary-color);
     color: white;
@@ -219,7 +227,7 @@ const SocialLink = styled(motion.a)`
 
 const HeroImage = styled(motion.div)`
   position: relative;
-  
+
   @media (max-width: 992px) {
     order: 1;
     max-width: 450px;
@@ -232,25 +240,29 @@ const ImageContainer = styled.div`
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-  
+
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, rgba(0, 168, 255, 0.4), rgba(126, 87, 194, 0.4));
+    background: linear-gradient(
+      45deg,
+      rgba(0, 168, 255, 0.4),
+      rgba(126, 87, 194, 0.4)
+    );
     mix-blend-mode: overlay;
     z-index: 1;
   }
-  
+
   img {
     width: 100%;
     display: block;
     transition: transform 0.5s ease;
   }
-  
+
   &:hover img {
     transform: scale(1.05);
   }
@@ -263,7 +275,11 @@ const GlowEffect = styled.div`
   border-radius: 20px;
   top: 0;
   left: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(0, 168, 255, 0.4), transparent 70%);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 168, 255, 0.4),
+    transparent 70%
+  );
   filter: blur(20px);
   z-index: -1;
 `;
@@ -277,20 +293,20 @@ const FloatingShape = styled(motion.div)`
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   z-index: -1;
-  
+
   &:nth-child(1) {
     top: -20px;
     left: -20px;
     border-radius: 50%;
   }
-  
+
   &:nth-child(2) {
     bottom: -30px;
     right: -15px;
     width: 120px;
     height: 60px;
   }
-  
+
   &:nth-child(3) {
     top: 40%;
     right: -40px;
@@ -311,7 +327,7 @@ const ScrollIndicator = styled(motion.div)`
   gap: 8px;
   color: var(--text-secondary);
   font-size: 0.9rem;
-  
+
   @media (max-width: 768px) {
     display: none;
   }
@@ -329,13 +345,13 @@ const Home = () => {
 
   useEffect(() => {
     const typed = new Typed(typedTargetRef.current, {
-      strings: ['Web Geliştirici', 'UI/UX Tasarımcı', 'Freelancer'],
+      strings: ["Sorumluluk ", "Öğrenme", "Eğlence"],
       typeSpeed: 80,
       backSpeed: 50,
       backDelay: 2000,
       loop: true,
       showCursor: true,
-      cursorChar: '|'
+      cursorChar: "|",
     });
     return () => {
       typed.destroy();
@@ -346,7 +362,7 @@ const Home = () => {
     <HomeSection id="home">
       <BgGradient />
       <BgAnimation />
-      
+
       <Container>
         <HeroContent>
           <HeroText>
@@ -357,24 +373,28 @@ const Home = () => {
             >
               HOŞ GELDİNİZ
             </SubHeading>
-            
+
             <Heading
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              Merhaba, ben <br />
+              <br />
               Muhammet Şahin Yıldırım
               <br />
               <AnimatedText ref={typedTargetRef}></AnimatedText>
             </Heading>
-            
+
             <Description
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              Modern ve kullanıcı dostu web uygulamaları geliştiriyorum. Üstün kullanıcı deneyimi ve son teknolojileri kullanarak, etkileyici dijital çözümler sunuyorum.
+              React ekosistemiyle modern ve ölçeklenebilir web arayüzleri
+              geliştiriyorum. Web teknolojilerindeki yetkinliğimi mobil uygulama
+              geliştirme süreçleriyle destekliyor; sistem mimarisine bütüncül
+              hakim olmak adına mikroservis yapıları ve ileri seviye veritabanı
+              yönetimi üzerine yoğunlaşıyorum
             </Description>
 
             <ButtonContainer
@@ -382,15 +402,15 @@ const Home = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <PrimaryButton 
+              <PrimaryButton
                 href="/projects"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
                 Projelerimi Gör <FaArrowRight />
               </PrimaryButton>
-              
-              <SecondaryButton 
+
+              <SecondaryButton
                 href="/contact"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
@@ -398,79 +418,71 @@ const Home = () => {
                 İletişime Geç <FaArrowRight />
               </SecondaryButton>
             </ButtonContainer>
-            
+
             <SocialContainer
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <SocialLink 
-                href="https://linkedin.com" 
+              <SocialLink
+                href="https://www.linkedin.com/in/muhammetsahinyildirim"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ y: -5 }}
               >
                 <FaLinkedin />
               </SocialLink>
-              <SocialLink 
-                href="https://github.com" 
+              <SocialLink
+                href="https://github.com/sahinyildiriim"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ y: -5 }}
               >
                 <FaGithub />
               </SocialLink>
-              <SocialLink 
-                href="https://twitter.com" 
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ y: -5 }}
-              >
-                <FaTwitter />
-              </SocialLink>
             </SocialContainer>
           </HeroText>
-          
+
           <HeroImage
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7 }}
           >
-            <FloatingShape 
-              animate={{ 
+            <FloatingShape
+              animate={{
                 y: [0, 15, 0],
-                rotate: [0, 10, 0]
+                rotate: [0, 10, 0],
               }}
-              transition={{ 
+              transition={{
                 repeat: Infinity,
                 duration: 6,
-                ease: "easeInOut" 
+                ease: "easeInOut",
               }}
             />
-            <FloatingShape 
-              animate={{ 
+            <FloatingShape
+              animate={{
                 y: [0, -20, 0],
                 x: [0, 10, 0],
-                rotate: [0, -10, 0]
+                rotate: [0, -10, 0],
               }}
-              transition={{ 
+              transition={{
                 repeat: Infinity,
                 duration: 7,
-                ease: "easeInOut" 
+                ease: "easeInOut",
               }}
             />
-            <FloatingShape 
-              animate={{ 
+            <FloatingShape
+              animate={{
                 y: [0, 10, 0],
-                rotate: [0, -5, 0]
+                rotate: [0, -5, 0],
               }}
-              transition={{ 
+              transition={{
                 repeat: Infinity,
                 duration: 5,
-                ease: "easeInOut" 
+                ease: "easeInOut",
               }}
             />
-            
+
             <ImageContainer>
               <img src="/image/B.jpg" alt="Muhammet Şahin Yıldırım" />
               <GlowEffect />
@@ -478,22 +490,22 @@ const Home = () => {
           </HeroImage>
         </HeroContent>
       </Container>
-      
+
       <ScrollIndicator
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
       >
         <span>Aşağı Kaydır</span>
-        <ScrollLine 
-          animate={{ 
+        <ScrollLine
+          animate={{
             height: [40, 60, 40],
-            opacity: [0.5, 1, 0.5]
+            opacity: [0.5, 1, 0.5],
           }}
-          transition={{ 
+          transition={{
             repeat: Infinity,
             duration: 2,
-            ease: "easeInOut" 
+            ease: "easeInOut",
           }}
         />
       </ScrollIndicator>
@@ -501,4 +513,4 @@ const Home = () => {
   );
 };
 
-export default Home; 
+export default Home;

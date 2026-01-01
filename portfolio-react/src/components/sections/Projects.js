@@ -1,12 +1,16 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
-import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import React, { useEffect } from "react";
+import styled from "styled-components";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 const ProjectsSection = styled.section`
   padding: 100px 0;
-  background: radial-gradient(circle at 50% 50%, rgba(30, 47, 76, 0.4) 0%, rgba(12, 20, 33, 0.7) 100%);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(30, 47, 76, 0.4) 0%,
+    rgba(12, 20, 33, 0.7) 100%
+  );
   position: relative;
   overflow: hidden;
 `;
@@ -16,7 +20,11 @@ const BgBlur = styled.div`
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background: linear-gradient(45deg, rgba(0, 168, 255, 0.1), rgba(126, 87, 194, 0.1));
+  background: linear-gradient(
+    45deg,
+    rgba(0, 168, 255, 0.1),
+    rgba(126, 87, 194, 0.1)
+  );
   filter: blur(120px);
   top: -200px;
   left: -200px;
@@ -39,7 +47,11 @@ const SectionHeading = styled(motion.div)`
 const Title = styled.h2`
   font-size: 2.8rem;
   margin-bottom: 15px;
-  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
@@ -56,7 +68,7 @@ const ProjectsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 30px;
-  
+
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
@@ -72,11 +84,11 @@ const ProjectCard = styled(motion.div)`
   display: flex;
   flex-direction: column;
   position: relative;
-  
+
   &:hover {
     transform: translateY(-10px);
     background: rgba(255, 255, 255, 0.08);
-    
+
     .project-image {
       transform: scale(1.1);
     }
@@ -87,15 +99,19 @@ const ProjectImageContainer = styled.div`
   height: 200px;
   overflow: hidden;
   position: relative;
-  
+
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(0deg, rgba(12, 20, 33, 0.7) 0%, rgba(12, 20, 33, 0) 100%);
+    background: linear-gradient(
+      0deg,
+      rgba(12, 20, 33, 0.7) 0%,
+      rgba(12, 20, 33, 0) 100%
+    );
     z-index: 1;
     opacity: 0.7;
   }
@@ -155,11 +171,11 @@ const ProjectLink = styled(motion.a)`
   color: var(--text-primary);
   font-size: 0.9rem;
   font-weight: 500;
-  
+
   &:hover {
     color: var(--primary-color);
   }
-  
+
   svg {
     font-size: 1.1rem;
   }
@@ -174,18 +190,21 @@ const FilterButtons = styled.div`
 `;
 
 const FilterButton = styled(motion.button)`
-  background: ${props => props.active ? 'var(--primary-color)' : 'rgba(255, 255, 255, 0.05)'};
-  color: ${props => props.active ? 'white' : 'var(--text-secondary)'};
+  background: ${(props) =>
+    props.active ? "var(--primary-color)" : "rgba(255, 255, 255, 0.05)"};
+  color: ${(props) => (props.active ? "white" : "var(--text-secondary)")};
   border: none;
   border-radius: 30px;
   padding: 10px 20px;
   font-size: 0.9rem;
   cursor: pointer;
   transition: var(--transition);
-  box-shadow: ${props => props.active ? '0 5px 15px rgba(0, 168, 255, 0.3)' : 'none'};
-  
+  box-shadow: ${(props) =>
+    props.active ? "0 5px 15px rgba(0, 168, 255, 0.3)" : "none"};
+
   &:hover {
-    background: ${props => props.active ? 'var(--primary-color)' : 'rgba(255, 255, 255, 0.1)'};
+    background: ${(props) =>
+      props.active ? "var(--primary-color)" : "rgba(255, 255, 255, 0.1)"};
   }
 `;
 
@@ -195,52 +214,52 @@ const EmptyState = styled(motion.div)`
   background: rgba(255, 255, 255, 0.05);
   border-radius: var(--border-radius);
   margin-top: 20px;
-  
+
   h3 {
     margin-bottom: 10px;
     color: var(--text-primary);
   }
-  
+
   p {
     color: var(--text-secondary);
   }
 `;
 
 const Projects = () => {
-  const [filter, setFilter] = React.useState('all');
+  const [filter, setFilter] = React.useState("all");
   const controls = useAnimation();
   const [ref, inView] = useInView({
     threshold: 0.1,
-    triggerOnce: false
+    triggerOnce: false,
   });
-  
+
   useEffect(() => {
     if (inView) {
-      controls.start('visible');
+      controls.start("visible");
     }
   }, [controls, inView]);
 
   // Filter değiştiğinde animasyon kontrollerini sıfırlayıp yeniden çalıştır
   useEffect(() => {
-    controls.start('hidden').then(() => {
-      controls.start('visible');
+    controls.start("hidden").then(() => {
+      controls.start("visible");
     });
   }, [filter, controls]);
-  
+
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
   };
-  
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
-  
+
   const itemVariants = {
     hidden: { y: 30, opacity: 0 },
     visible: {
@@ -248,78 +267,18 @@ const Projects = () => {
       opacity: 1,
       transition: {
         duration: 0.5,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
-  
-  const projects = [
-    {
-      id: 1,
-      title: "E-Ticaret Platformu",
-      description: "Modern ve kullanıcı dostu bir e-ticaret platformu. Ürün listesi, sepet, ödeme sistemi ve admin paneli içerir.",
-      image: "https://via.placeholder.com/400x300/1e2f4c/ffffff?text=E-Commerce+Platform",
-      techStack: ["React", "Node.js", "MongoDB", "Express.js"],
-      liveLink: "#",
-      githubLink: "#",
-      category: "web"
-    },
-    {
-      id: 2,
-      title: "Task Yönetim Uygulaması",
-      description: "Görevlerinizi organize etmenizi sağlayan, drag-and-drop özellikli bir task yönetim uygulaması.",
-      image: "https://via.placeholder.com/400x300/1e2f4c/ffffff?text=Task+Manager",
-      techStack: ["React", "Firebase", "CSS3", "Context API"],
-      liveLink: "#",
-      githubLink: "#",
-      category: "web"
-    },
-    {
-      id: 3,
-      title: "Hava Durumu Uygulaması",
-      description: "Gerçek zamanlı hava durumu verileri sağlayan, konum bazlı bir hava durumu uygulaması.",
-      image: "https://via.placeholder.com/400x300/1e2f4c/ffffff?text=Weather+App",
-      techStack: ["JavaScript", "HTML5", "CSS3", "Weather API"],
-      liveLink: "#",
-      githubLink: "#",
-      category: "web"
-    },
-    {
-      id: 4,
-      title: "Sosyal Medya Mobil Uygulaması",
-      description: "Fotoğraf paylaşımı, mesajlaşma ve profil yönetimi özelliklerine sahip bir sosyal medya uygulaması.",
-      image: "https://via.placeholder.com/400x300/1e2f4c/ffffff?text=Social+Media+App",
-      techStack: ["React Native", "Firebase", "Redux", "Expo"],
-      liveLink: "#",
-      githubLink: "#",
-      category: "mobile"
-    },
-    {
-      id: 5,
-      title: "Blog CMS",
-      description: "İçerik yönetim sistemi ile blog yazılarını yönetmeyi sağlayan bir platform.",
-      image: "https://via.placeholder.com/400x300/1e2f4c/ffffff?text=Blog+CMS",
-      techStack: ["PHP", "MySQL", "Bootstrap", "jQuery"],
-      liveLink: "#",
-      githubLink: "#",
-      category: "backend"
-    },
-    {
-      id: 6,
-      title: "Fitness Takip Uygulaması",
-      description: "Egzersiz rutinlerini ve beslenme alışkanlıklarını takip etmenizi sağlayan bir uygulama.",
-      image: "https://via.placeholder.com/400x300/1e2f4c/ffffff?text=Fitness+Tracker",
-      techStack: ["Flutter", "Dart", "Firebase", "Provider"],
-      liveLink: "#",
-      githubLink: "#",
-      category: "mobile"
-    }
-  ];
-  
-  const filteredProjects = filter === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === filter);
-  
+
+  const projects = [];
+
+  const filteredProjects =
+    filter === "all"
+      ? projects
+      : projects.filter((project) => project.category === filter);
+
   return (
     <ProjectsSection id="projects">
       <BgBlur />
@@ -332,42 +291,34 @@ const Projects = () => {
           <Title>Projelerim</Title>
           <Subtitle>Son zamanlarda geliştirdiğim bazı projeler</Subtitle>
         </SectionHeading>
-        
+
         <FilterButtons>
-          <FilterButton 
-            active={filter === 'all'} 
-            onClick={() => handleFilterChange('all')}
+          <FilterButton
+            active={filter === "all"}
+            onClick={() => handleFilterChange("all")}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             Tümü
           </FilterButton>
-          <FilterButton 
-            active={filter === 'web'} 
-            onClick={() => handleFilterChange('web')}
+          <FilterButton
+            active={filter === "web"}
+            onClick={() => handleFilterChange("web")}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             Web
           </FilterButton>
-          <FilterButton 
-            active={filter === 'mobile'} 
-            onClick={() => handleFilterChange('mobile')}
+          <FilterButton
+            active={filter === "mobile"}
+            onClick={() => handleFilterChange("mobile")}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             Mobil
           </FilterButton>
-          <FilterButton 
-            active={filter === 'backend'} 
-            onClick={() => handleFilterChange('backend')}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Backend
-          </FilterButton>
         </FilterButtons>
-        
+
         {filteredProjects.length > 0 ? (
           <ProjectsGrid ref={ref}>
             {filteredProjects.map((project) => (
@@ -378,7 +329,11 @@ const Projects = () => {
                 animate={controls}
               >
                 <ProjectImageContainer>
-                  <ProjectImage src={project.image} alt={project.title} className="project-image" />
+                  <ProjectImage
+                    src={project.image}
+                    alt={project.title}
+                    className="project-image"
+                  />
                 </ProjectImageContainer>
                 <ProjectContent>
                   <ProjectTitle>{project.title}</ProjectTitle>
@@ -389,8 +344,8 @@ const Projects = () => {
                     ))}
                   </ProjectTechStack>
                   <ProjectLinks>
-                    <ProjectLink 
-                      href={project.liveLink} 
+                    <ProjectLink
+                      href={project.liveLink}
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ x: 3 }}
@@ -398,8 +353,8 @@ const Projects = () => {
                     >
                       <FaExternalLinkAlt /> Demo
                     </ProjectLink>
-                    <ProjectLink 
-                      href={project.githubLink} 
+                    <ProjectLink
+                      href={project.githubLink}
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ x: 3 }}
@@ -418,8 +373,7 @@ const Projects = () => {
             initial="hidden"
             animate={controls}
           >
-            <h3>Bu kategoride henüz proje bulunmuyor</h3>
-            <p>Başka bir kategori seçin veya daha sonra tekrar kontrol edin.</p>
+            <h3>Projelere GitHub üzerinden ulaşabilirsiniz.</h3>
           </EmptyState>
         )}
       </Container>
@@ -427,4 +381,4 @@ const Projects = () => {
   );
 };
 
-export default Projects; 
+export default Projects;

@@ -1,12 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import {
+  FaMapMarkerAlt,
+  FaEnvelope,
+  FaPhone,
+  FaLinkedin,
+  FaGithub,
+  FaInstagram,
+} from "react-icons/fa";
 
 const ContactSection = styled.section`
   padding: 100px 0;
-  background: radial-gradient(circle at 50% 50%, rgba(12, 20, 33, 0.8) 0%, rgba(12, 20, 33, 0.95) 100%);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(12, 20, 33, 0.8) 0%,
+    rgba(12, 20, 33, 0.95) 100%
+  );
   position: relative;
   overflow: hidden;
 `;
@@ -16,7 +27,11 @@ const BgBlur = styled.div`
   width: 600px;
   height: 600px;
   border-radius: 50%;
-  background: linear-gradient(45deg, rgba(0, 168, 255, 0.1), rgba(255, 107, 107, 0.1));
+  background: linear-gradient(
+    45deg,
+    rgba(0, 168, 255, 0.1),
+    rgba(255, 107, 107, 0.1)
+  );
   filter: blur(150px);
   top: -300px;
   right: -300px;
@@ -39,7 +54,11 @@ const SectionHeading = styled(motion.div)`
 const Title = styled.h2`
   font-size: 2.8rem;
   margin-bottom: 15px;
-  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
@@ -56,7 +75,7 @@ const ContactContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 50px;
-  
+
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
@@ -66,7 +85,7 @@ const ContactInfo = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: 30px;
-  
+
   @media (max-width: 768px) {
     margin-bottom: 30px;
   }
@@ -101,7 +120,11 @@ const ContactIcon = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: linear-gradient(45deg, var(--primary-color), rgba(0, 168, 255, 0.7));
+  background: linear-gradient(
+    45deg,
+    var(--primary-color),
+    rgba(0, 168, 255, 0.7)
+  );
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,7 +139,7 @@ const ContactText = styled.div`
     margin-bottom: 5px;
     font-size: 1.1rem;
   }
-  
+
   p {
     color: var(--text-secondary);
     font-size: 1rem;
@@ -141,7 +164,7 @@ const SocialLink = styled(motion.a)`
   color: var(--text-primary);
   font-size: 1.2rem;
   transition: var(--transition);
-  
+
   &:hover {
     background: var(--primary-color);
     color: white;
@@ -156,7 +179,7 @@ const ContactFormContainer = styled(motion.div)`
   box-shadow: var(--box-shadow);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  
+
   @media (max-width: 576px) {
     padding: 30px 20px;
   }
@@ -194,13 +217,13 @@ const FormInput = styled.input`
   color: var(--text-primary);
   font-size: 1rem;
   transition: var(--transition);
-  
+
   &:focus {
     outline: none;
     border-color: var(--primary-color);
     background: rgba(255, 255, 255, 0.08);
   }
-  
+
   &::placeholder {
     color: rgba(255, 255, 255, 0.3);
   }
@@ -216,13 +239,13 @@ const FormTextarea = styled.textarea`
   transition: var(--transition);
   resize: vertical;
   min-height: 150px;
-  
+
   &:focus {
     outline: none;
     border-color: var(--primary-color);
     background: rgba(255, 255, 255, 0.08);
   }
-  
+
   &::placeholder {
     color: rgba(255, 255, 255, 0.3);
   }
@@ -239,12 +262,12 @@ const SubmitButton = styled(motion.button)`
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
-  
+
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0, 168, 255, 0.4);
   }
-  
+
   &:disabled {
     opacity: 0.7;
     cursor: not-allowed;
@@ -258,78 +281,87 @@ const AlertMessage = styled(motion.div)`
   margin-top: 20px;
   border-radius: 8px;
   text-align: center;
-  background: ${props => props.type === 'success' ? 'rgba(76, 217, 100, 0.15)' : 'rgba(252, 56, 80, 0.15)'};
-  color: ${props => props.type === 'success' ? 'var(--success-color)' : 'var(--danger-color)'};
-  border: 1px solid ${props => props.type === 'success' ? 'rgba(76, 217, 100, 0.3)' : 'rgba(252, 56, 80, 0.3)'};
+  background: ${(props) =>
+    props.type === "success"
+      ? "rgba(76, 217, 100, 0.15)"
+      : "rgba(252, 56, 80, 0.15)"};
+  color: ${(props) =>
+    props.type === "success" ? "var(--success-color)" : "var(--danger-color)"};
+  border: 1px solid
+    ${(props) =>
+      props.type === "success"
+        ? "rgba(76, 217, 100, 0.3)"
+        : "rgba(252, 56, 80, 0.3)"};
 `;
 
 const Contact = () => {
   const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [alert, setAlert] = useState(null);
-  
+
   const controls = useAnimation();
   const [ref, inView] = useInView({
     threshold: 0.2,
-    triggerOnce: true
+    triggerOnce: true,
   });
-  
+
   useEffect(() => {
     if (inView) {
-      controls.start('visible');
+      controls.start("visible");
     }
   }, [controls, inView]);
-  
+
   const handleChange = (e) => {
     setFormState({
       ...formState,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
       setAlert({
-        type: 'success',
-        message: 'Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağım.'
+        type: "success",
+        message:
+          "Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağım.",
       });
-      
+
       // Reset form
       setFormState({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
       });
-      
+
       // Clear alert after 5 seconds
       setTimeout(() => {
         setAlert(null);
       }, 5000);
     }, 1500);
   };
-  
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
-  
+
   const itemVariants = {
     hidden: { y: 30, opacity: 0 },
     visible: {
@@ -337,11 +369,11 @@ const Contact = () => {
       opacity: 1,
       transition: {
         duration: 0.5,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
-  
+
   return (
     <ContactSection id="contact">
       <BgBlur />
@@ -352,9 +384,12 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
         >
           <Title>İletişim</Title>
-          <Subtitle>Projeleriniz veya iş fırsatları için benimle iletişime geçebilirsiniz</Subtitle>
+          <Subtitle>
+            Projeleriniz veya iş fırsatları için benimle iletişime
+            geçebilirsiniz
+          </Subtitle>
         </SectionHeading>
-        
+
         <ContactContainer ref={ref}>
           <ContactInfo
             variants={containerVariants}
@@ -364,10 +399,12 @@ const Contact = () => {
             <motion.div variants={itemVariants}>
               <InfoTitle>Bana Ulaşın</InfoTitle>
               <InfoDescription>
-                Projelerinizde yardıma ihtiyacınız mı var? Size yardımcı olmaktan memnuniyet duyarım. Aşağıdaki iletişim bilgileri üzerinden benimle iletişime geçebilirsiniz.
+                Projelerinizde yardıma ihtiyacınız mı var? Size yardımcı
+                olmaktan memnuniyet duyarım. Aşağıdaki iletişim bilgileri
+                üzerinden benimle iletişime geçebilirsiniz.
               </InfoDescription>
             </motion.div>
-            
+
             <ContactItems>
               <ContactItem variants={itemVariants}>
                 <ContactIcon>
@@ -378,7 +415,7 @@ const Contact = () => {
                   <p>İstanbul, Türkiye</p>
                 </ContactText>
               </ContactItem>
-              
+
               <ContactItem variants={itemVariants}>
                 <ContactIcon>
                   <FaEnvelope />
@@ -388,7 +425,7 @@ const Contact = () => {
                   <p>muhammetsahinyildirim@gmail.com</p>
                 </ContactText>
               </ContactItem>
-              
+
               <ContactItem variants={itemVariants}>
                 <ContactIcon>
                   <FaPhone />
@@ -399,28 +436,32 @@ const Contact = () => {
                 </ContactText>
               </ContactItem>
             </ContactItems>
-            
+
             <motion.div variants={itemVariants}>
-              <h4 style={{ color: 'var(--text-primary)', marginBottom: '15px' }}>Sosyal Medya</h4>
+              <h4
+                style={{ color: "var(--text-primary)", marginBottom: "15px" }}
+              >
+                Sosyal Medya
+              </h4>
               <SocialLinks>
-                <SocialLink 
-                  href="https://www.linkedin.com/in/muhammetsahinyildirim/" 
+                <SocialLink
+                  href="https://www.linkedin.com/in/muhammetsahinyildirim/"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ y: -5 }}
                 >
                   <FaLinkedin />
                 </SocialLink>
-                <SocialLink 
-                  href="https://github.com/sahinyildiriim" 
+                <SocialLink
+                  href="https://github.com/sahinyildiriim"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ y: -5 }}
                 >
                   <FaGithub />
                 </SocialLink>
-                <SocialLink 
-                  href="https://instagram.com/sahinyldriimm" 
+                <SocialLink
+                  href="https://instagram.com/sahinyldriimm"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ y: -5 }}
@@ -430,7 +471,7 @@ const Contact = () => {
               </SocialLinks>
             </motion.div>
           </ContactInfo>
-          
+
           <ContactFormContainer
             variants={containerVariants}
             initial="hidden"
@@ -439,11 +480,11 @@ const Contact = () => {
             <motion.div variants={itemVariants}>
               <FormTitle>Mesaj Gönderin</FormTitle>
             </motion.div>
-            
+
             <ContactForm onSubmit={handleSubmit}>
               <FormGroup as={motion.div} variants={itemVariants}>
                 <FormLabel>İsim</FormLabel>
-                <FormInput 
+                <FormInput
                   type="text"
                   name="name"
                   value={formState.name}
@@ -452,10 +493,10 @@ const Contact = () => {
                   required
                 />
               </FormGroup>
-              
+
               <FormGroup as={motion.div} variants={itemVariants}>
                 <FormLabel>Email</FormLabel>
-                <FormInput 
+                <FormInput
                   type="email"
                   name="email"
                   value={formState.email}
@@ -464,10 +505,10 @@ const Contact = () => {
                   required
                 />
               </FormGroup>
-              
+
               <FormGroup as={motion.div} variants={itemVariants}>
                 <FormLabel>Konu</FormLabel>
-                <FormInput 
+                <FormInput
                   type="text"
                   name="subject"
                   value={formState.subject}
@@ -476,10 +517,10 @@ const Contact = () => {
                   required
                 />
               </FormGroup>
-              
+
               <FormGroup as={motion.div} variants={itemVariants}>
                 <FormLabel>Mesaj</FormLabel>
-                <FormTextarea 
+                <FormTextarea
                   name="message"
                   value={formState.message}
                   onChange={handleChange}
@@ -487,19 +528,19 @@ const Contact = () => {
                   required
                 />
               </FormGroup>
-              
-              <SubmitButton 
+
+              <SubmitButton
                 type="submit"
                 disabled={isSubmitting}
                 variants={itemVariants}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {isSubmitting ? 'Gönderiliyor...' : 'Mesaj Gönder'}
+                {isSubmitting ? "Gönderiliyor..." : "Mesaj Gönder"}
               </SubmitButton>
-              
+
               {alert && (
-                <AlertMessage 
+                <AlertMessage
                   type={alert.type}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -516,4 +557,4 @@ const Contact = () => {
   );
 };
 
-export default Contact; 
+export default Contact;
